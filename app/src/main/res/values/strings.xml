@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">DonorUA</string>
+
+    <string name="action_settings">Налаштування</string>
+    <string name="action_search">Пошук</string>
+    <string-array name="drawer_menu">
+        <item>Центри крові</item>
+        <item>Мапа центрів</item>
+        <item>Отримувачі крові</item>
+        <item>Гаряча лінія</item>
+        <item>Новини</item>
+    </string-array>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <string name="title_activity_center">Центр</string>
+    <string name="title_activity_recipient">Реципієнт</string>
+    <string name="title_activity_center_list">Центри</string>
+    <string name="title_activity_recipient_list">Реципієнти</string>
+    <string name="title_activity_hot_line">Горяча лінія</string>
+    <string name="title_activity_centers_map">Мапа</string>
+
+    <string name="recipient_name">Ім’я</string>
+    <string name="recipient_city">Місто</string>
+    <string name="recipient_birthday">Дата народження</string>
+    <string name="recipient_phone">Телефон</string>
+    <string name="recipient_email">e-mail</string>
+    <string name="blood_type">Група крові</string>
+    <string name="recipient_donor_count">Необхідно донорів</string>
+    <string name="recipient_center">Центр</string>
+    <string name="recipient_center_address">Адреса центру</string>
+    <string name="recipient_contact_person">Контактна особа</string>
+    <string name="recipient_disease">Хвороба</string>
+    <string name="recipient_description">Опис</string>
+    <string name="recipient_date_added">Дата внесення в базу</string>
+
+    <string name="center_city">Місто</string>
+    <string name="center_address">Адреса</string>
+    <string name="center_phone">Телефон</string>
+    <string name="center_email">e-mail</string>
+    <string name="center_website">Вебсайт</string>
+    <string name="center_description">Інформація</string>
+    <string name="center_about">Деталі</string>
+    <string name="center_sex">Обмеження за полом</string>
+    <string name="gender_male">Тільки чоловіки</string>
+    <string name="gender_female">Тільки жінки</string>
+    <string name="gender_anyone">Обмежень немає</string>
+    <string name="info_unknown">Інформація відсутня</string>
+    <string name="is_urgent">Терміново</string>
+    <string name="contacts">Контакти</string>
+    <string name="info_about_hotline">Якщо ви бажаєте отримати консультацію з питань донорства, дзвоніть на номер гарячої лінії (067) 208-03-03.</string>
+    <string name="call_hotline">Зателефонувати на горячу лінію</string>
+    <string name="donorua_about">ДонорUA - автоматизована система рекрутингу донорів крові, основна мета якої - встановити швидкий контакт "донор - реципієнт".
+        Проект також спрямований на координацію донорів крові та пропаганду безоплатного донорства в Україні.
+
+        Перший і вагомий поштовх до реалізації проекту ДонорUA був зроблений під час конференції IDCEE 2014,
+        де відбувся хакатон з розробки соціальних проектів, організований Socialboost, і на якому ДонорUA став кращим проектом.</string>
+
+    <string name="navigation">Меню</string>
+    <string name="btn_recipient_link">Посилання</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
