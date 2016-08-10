@@ -47,12 +47,18 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.centers_list:
                         Toast.makeText(getApplicationContext(), "Center list", Toast.LENGTH_SHORT).show();
+                        Intent centerListActivity = new Intent(MainActivity.this, CenterListActivity.class);
+                        startActivity(centerListActivity);
                         break;
                     case R.id.centers_map:
                         Toast.makeText(getApplicationContext(), "Center map", Toast.LENGTH_SHORT).show();
+                        Intent centerMapActivity = new Intent(MainActivity.this, CenterMapActivity.class);
+                        startActivity(centerMapActivity);
                         break;
                     case R.id.recipients:
                         Toast.makeText(getApplicationContext(), "Recipients", Toast.LENGTH_SHORT).show();
+                        Intent recipientActivity = new Intent(MainActivity.this, RecipientListActivity.class);
+                        startActivity(recipientActivity);
                         break;
                     case R.id.hotline:
                         Toast.makeText(getApplicationContext(), "Hot line", Toast.LENGTH_SHORT).show();
@@ -61,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.news:
                         Toast.makeText(getApplicationContext(), "News", Toast.LENGTH_SHORT).show();
+                        Intent newsListActivity = new Intent(MainActivity.this, NewsListActivity.class);
+                        startActivity(newsListActivity);
                         break;
                     default:
                         Toast.makeText(getApplicationContext(), "Menu item unknown", Toast.LENGTH_SHORT).show();

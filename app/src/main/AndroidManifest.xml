@@ -24,6 +24,62 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ua.com.kathien.donorua.activities.MainActivity" />
         </activity>
+        <activity
+            android:name=".activities.RecipientListActivity"
+            android:label="@string/title_activity_recipient_list"
+            android:parentActivityName=".activities.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ua.com.kathien.donorua.activities.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activities.RecipientInfoActivity"
+            android:label="@string/title_activity_recipient_info"
+            android:parentActivityName=".activities.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ua.com.kathien.donorua.activities.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activities.CenterListActivity"
+            android:label="@string/title_activity_center_list"
+            android:parentActivityName=".activities.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ua.com.kathien.donorua.activities.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activities.CenterMapActivity"
+            android:label="@string/title_activity_center_map"
+            android:parentActivityName=".activities.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ua.com.kathien.donorua.activities.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activities.CenterInfoActivity"
+            android:label="@string/title_activity_center_info"
+            android:parentActivityName=".activities.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ua.com.kathien.donorua.activities.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activities.NewsListActivity"
+            android:label="@string/title_activity_news_list"
+            android:parentActivityName=".activities.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ua.com.kathien.donorua.activities.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activities.NewsInfoActivity"
+            android:label="@string/title_activity_news_info"
+            android:parentActivityName=".activities.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ua.com.kathien.donorua.activities.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

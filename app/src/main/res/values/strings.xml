@@ -69,5 +69,10 @@
     <string name="title_activity_hotline">Hotline</string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_recipient_info">RecipientInfoActivity</string>
+    <string name="title_activity_center_map">CenterMapActivity</string>
+    <string name="title_activity_center_info">CenterInfoActivity</string>
+    <string name="title_activity_news_list">NewsListActivity</string>
+    <string name="title_activity_news_info">NewsInfoActivity</string>
 
 </resources>
