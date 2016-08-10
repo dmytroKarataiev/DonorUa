@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/contacts"
+        android:id="@+id/txtView_contacts"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="@string/info_about_hotline"
+        android:id="@+id/textView3"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="6"
+        android:gravity="center"
+        android:padding="8dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="@string/call_hotline"
+        android:id="@+id/btn_call_hotline"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:background="@color/colorAccent"/>
+</LinearLayout>

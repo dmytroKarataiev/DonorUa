@@ -22,7 +22,7 @@
                 layout="@layout/toolbar" />
         </LinearLayout>
 
-        <include layout="@layout/content_main_activity" />
+        <include layout="@layout/content_activity_hotline" />
 
 
     </LinearLayout>
