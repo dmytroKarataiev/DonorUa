@@ -71,8 +71,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.centers_map:
                         Toast.makeText(getApplicationContext(), "Center map", Toast.LENGTH_SHORT).show();
-                        Intent centerMapActivity = new Intent(MainActivity.this, CenterMapActivity.class);
-                        startActivity(centerMapActivity);
+
                         break;
                     case R.id.recipients:
                         Toast.makeText(getApplicationContext(), "Recipients", Toast.LENGTH_SHORT).show();
@@ -121,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
 
     public void showCenters() {
         CentersShower centersShower = new CentersShower();

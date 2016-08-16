@@ -2,6 +2,9 @@ package ua.com.kathien.donorua.fragments;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +14,7 @@ import java.util.ArrayList;
 
 import ua.com.kathien.donorua.R;
 import ua.com.kathien.donorua.models.Center;
+import ua.com.kathien.donorua.views.adapters.CentersAdapter;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -18,7 +22,10 @@ import ua.com.kathien.donorua.models.Center;
 public class CenterListFragment extends Fragment {
 
     private ArrayList<Center> centers;
-    private TextView centersText;
+    private RecyclerView centersRecyclerView;
+    private RecyclerView.Adapter centersAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private static final String LOG_TAG = CenterListFragment.class.getSimpleName();
 
     public CenterListFragment() {
     }
@@ -29,9 +36,22 @@ public class CenterListFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_center_list, container, false);
 
-        centersText = (TextView) view.findViewById(R.id.centers_text);
+
         centers = getActivity().getIntent().getParcelableArrayListExtra("OurCenters");
-        centersText.setText(centers.toString());
+
+        centersRecyclerView = (RecyclerView) view.findViewById(R.id.centers_recycler_view);
+
+        if(centersRecyclerView == null) {
+            Log.v(LOG_TAG, "centersRecyclerView is null");
+            return view;
+        }
+
+        centersRecyclerView.setHasFixedSize(true);
+
+
+        centersRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        centersRecyclerView.setAdapter(new CentersAdapter(centers));
+
 
         return view;
     }

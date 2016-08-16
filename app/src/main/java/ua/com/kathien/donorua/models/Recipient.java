@@ -142,5 +142,175 @@ public class Recipient implements Parcelable {
         }
     };
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public Date getDateOFBirth() {
+        return dateOFBirth;
+    }
+
+    public void setDateOFBirth(Date dateOFBirth) {
+        this.dateOFBirth = dateOFBirth;
+    }
+
+    public String getCenter() {
+        return center;
+    }
+
+    public void setCenter(String center) {
+        this.center = center;
+    }
+
+    public URL getPhotoImage() {
+        return photoImage;
+    }
+
+    public void setPhotoImage(URL photoImage) {
+        this.photoImage = photoImage;
+    }
+
+    public String getContactPerson() {
+        return contactPerson;
+    }
+
+    public void setContactPerson(String contactPerson) {
+        this.contactPerson = contactPerson;
+    }
+
+    public boolean isUrgent() {
+        return isUrgent;
+    }
+
+    public void setUrgent(boolean urgent) {
+        isUrgent = urgent;
+    }
+
+    public Date getDateAdded() {
+        return dateAdded;
+    }
+
+    public void setDateAdded(Date dateAdded) {
+        this.dateAdded = dateAdded;
+    }
+
+    public String getBloodType() {
+        return bloodType;
+    }
+
+    public void setBloodType(String bloodType) {
+        this.bloodType = bloodType;
+    }
+
+    public String getDisease() {
+        return disease;
+    }
+
+    public void setDisease(String disease) {
+        this.disease = disease;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getNeededDonorsCount() {
+        return neededDonorsCount;
+    }
+
+    public void setNeededDonorsCount(int neededDonorsCount) {
+        this.neededDonorsCount = neededDonorsCount;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public int getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(int cityId) {
+        this.cityId = cityId;
+    }
+
+    public int getCenterId() {
+        return centerId;
+    }
+
+    public void setCenterId(int centerId) {
+        this.centerId = centerId;
+    }
+
+    public String getCenterAddress() {
+        return centerAddress;
+    }
+
+    public void setCenterAddress(String centerAddress) {
+        this.centerAddress = centerAddress;
+    }
+
+    public URL getUrl() {
+        return url;
+    }
+
+    public void setUrl(URL url) {
+        this.url = url;
+    }
+
+    public String getFullName() {
+        return lastName.trim() + " " + firstName.trim();
+    }
 }
