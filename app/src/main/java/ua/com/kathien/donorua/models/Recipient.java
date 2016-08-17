@@ -12,27 +12,27 @@ import java.util.Date;
 public class Recipient implements Parcelable {
 
 
-    protected int id;
-    protected String email;
-    protected String phone;
-    protected String firstName;
-    protected String lastName;
-    protected String middleName;
-    protected Date dateOFBirth;
-    protected String center;
-    protected URL photoImage;
-    protected String contactPerson;
-    protected boolean isUrgent;
-    protected Date dateAdded;
-    protected String bloodType;
-    protected String disease;
-    protected String description;
-    protected int neededDonorsCount;
-    protected String city;
-    protected int cityId;
-    protected int centerId;
-    protected String centerAddress;
-    protected URL url;
+    private int id;
+    private String email;
+    private String phone;
+    private String firstName;
+    private String lastName;
+    private String middleName;
+    private Date dateOFBirth;
+    private String center;
+    private URL photoImage;
+    private String contactPerson;
+    private boolean isUrgent;
+    private Date dateAdded;
+    private String bloodType;
+    private String disease;
+    private String description;
+    private int neededDonorsCount;
+    private String city;
+    private int cityId;
+    private int centerId;
+    private String centerAddress;
+    private URL url;
 
     public Recipient(int id, String email, String phone, String firstName, String lastName, String middleName, Date dateOFBirth, String center,
                      URL photoImage, String contactPerson, boolean isUrgent, Date dateAdded, String bloodType, String disease, String description,

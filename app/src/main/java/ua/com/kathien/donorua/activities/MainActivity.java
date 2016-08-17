@@ -11,43 +11,55 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import ua.com.kathien.donorua.R;
 import ua.com.kathien.donorua.models.Center;
+import ua.com.kathien.donorua.models.News;
 import ua.com.kathien.donorua.models.Recipient;
 import ua.com.kathien.donorua.utils.CentersParser;
+import ua.com.kathien.donorua.utils.NewsParser;
 import ua.com.kathien.donorua.utils.RecipientsParser;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String LOG_TAG = MainActivity.class.getSimpleName();
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
 
     private ArrayList<Center> centers;
     private ArrayList<Recipient> recipients;
+    private ArrayList<News> news;
     private boolean recipientsDownloaded;
     private boolean centersDownloaded;
+    private boolean newsDownloaded;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        centers = new ArrayList<>();
-        recipients = new ArrayList<>();
-        recipientsDownloaded = false;
-        centersDownloaded = false;
-
         initComponents();
     }
 
     public void initComponents() {
+
+        centers = new ArrayList<>();
+        recipients = new ArrayList<>();
+        news = new ArrayList<>();
+
+        recipientsDownloaded = false;
+        centersDownloaded = false;
+        newsDownloaded = false;
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
@@ -84,8 +96,13 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.news:
                         Toast.makeText(getApplicationContext(), "News", Toast.LENGTH_SHORT).show();
-                        Intent newsListActivity = new Intent(MainActivity.this, NewsListActivity.class);
-                        startActivity(newsListActivity);
+                        showNews();
+
+//                        Intent newsListActivity = new Intent(MainActivity.this, NewsListActivity.class);
+//                        startActivity(newsListActivity);
+                        break;
+                    case R.id.events:
+
                         break;
                     default:
                         Toast.makeText(getApplicationContext(), "Menu item unknown", Toast.LENGTH_SHORT).show();
@@ -121,6 +138,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void showNews() {
+        NewsShower newsShower = new NewsShower();
+        newsShower.execute();
+    }
 
     public void showCenters() {
         CentersShower centersShower = new CentersShower();
@@ -147,6 +168,41 @@ public class MainActivity extends AppCompatActivity {
         centersDownloaded = true;
 
         return centers;
+    }
+
+    private ArrayList<News> parseAllNews() {
+        if (newsDownloaded) {
+            return news;
+        }
+        if (!isOnline()) {
+            return null;
+        }
+        NewsParser newsParser = new NewsParser();
+        newsParser.parseNews(news);
+        newsDownloaded = true;
+
+        return news;
+    }
+
+    private class NewsShower extends AsyncTask<Void, Void, ArrayList<News>> {
+        public NewsShower() {
+            super();
+        }
+
+        @Override
+        protected ArrayList<News> doInBackground(Void... params) {
+            news = parseAllNews();
+            return news;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<News> result) {
+            if(result == null) {
+                Log.v(LOG_TAG, "news list is null");
+                return;
+            }
+            Log.i(LOG_TAG + "news", news.toString());
+        }
     }
 
     private class CentersShower extends AsyncTask<Void, Void, ArrayList<Center>> {

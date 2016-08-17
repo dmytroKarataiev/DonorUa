@@ -20,8 +20,6 @@ public class RecipientListFragment extends Fragment {
     private static final String LOG_TAG = RecipientListFragment.class.getSimpleName();
     private ArrayList<Recipient> recipients;
     private RecyclerView recipientsRecyclerView;
-    private RecyclerView.Adapter recipientsAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
 
 
     public RecipientListFragment() {

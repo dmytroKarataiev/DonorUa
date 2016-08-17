@@ -8,6 +8,7 @@
     <string name="nav_drawer_recipients">Отримувачі крові</string>
     <string name="nav_drawer_hotline">Гаряча лінія</string>
     <string name="nav_drawer_news">Новини</string>
+    <string name="nav_drawer_events">Events</string>
     <string-array name="drawer_menu">
         <item>Центри крові</item>
         <item>Мапа центрів</item>

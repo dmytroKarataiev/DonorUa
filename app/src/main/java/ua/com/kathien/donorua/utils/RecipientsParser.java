@@ -34,8 +34,8 @@ public class RecipientsParser {
         try {
             JSONObject jsonRootObject = new JSONObject(recipientsJSON);
             JSONArray recipientsArray = jsonRootObject.getJSONArray("value");
-
-            for (int i = 0; i < recipientsArray.length(); i++) {
+            int recipientsArrayLength = recipientsArray.length();
+            for (int i = 0; i < recipientsArrayLength; i++) {
                 JSONObject recipient = recipientsArray.getJSONObject(i);
 
                 int id = recipient.getInt("id");
@@ -96,7 +96,7 @@ public class RecipientsParser {
 
 
         } catch (JSONException e) {
-            Log.e("RecipientParser", "Malformed JSON: " + e.getMessage());
+            Log.e(LOG_TAG, "Malformed JSON: " + e.getMessage());
             e.printStackTrace();
         }
 
