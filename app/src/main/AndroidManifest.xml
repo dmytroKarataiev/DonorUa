@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ua.com.kathien.donorua" >
-
+    package="ua.com.kathien.donorua">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -11,15 +10,14 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/MyMaterialTheme" >
+        android:theme="@style/MyMaterialTheme">
         <activity
             android:name=".activities.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,7 +27,7 @@
         <activity
             android:name=".activities.HotlineActivity"
             android:label="@string/title_activity_hotline"
-            android:parentActivityName=".activities.MainActivity" >
+            android:parentActivityName=".activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ua.com.kathien.donorua.activities.MainActivity" />
@@ -37,7 +35,7 @@
         <activity
             android:name=".activities.RecipientListActivity"
             android:label="@string/title_activity_recipient_list"
-            android:parentActivityName=".activities.MainActivity" >
+            android:parentActivityName=".activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ua.com.kathien.donorua.activities.MainActivity" />
@@ -45,7 +43,7 @@
         <activity
             android:name=".activities.RecipientInfoActivity"
             android:label="@string/title_activity_recipient_info"
-            android:parentActivityName=".activities.MainActivity" >
+            android:parentActivityName=".activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ua.com.kathien.donorua.activities.MainActivity" />
@@ -53,7 +51,7 @@
         <activity
             android:name=".activities.CenterListActivity"
             android:label="@string/title_activity_center_list"
-            android:parentActivityName=".activities.MainActivity" >
+            android:parentActivityName=".activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ua.com.kathien.donorua.activities.MainActivity" />
@@ -61,7 +59,7 @@
         <activity
             android:name=".activities.CenterMapActivity"
             android:label="@string/title_activity_center_map"
-            android:parentActivityName=".activities.MainActivity" >
+            android:parentActivityName=".activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ua.com.kathien.donorua.activities.MainActivity" />
@@ -69,7 +67,7 @@
         <activity
             android:name=".activities.CenterInfoActivity"
             android:label="@string/title_activity_center_info"
-            android:parentActivityName=".activities.MainActivity" >
+            android:parentActivityName=".activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ua.com.kathien.donorua.activities.MainActivity" />
@@ -77,7 +75,7 @@
         <activity
             android:name=".activities.NewsListActivity"
             android:label="@string/title_activity_news_list"
-            android:parentActivityName=".activities.MainActivity" >
+            android:parentActivityName=".activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ua.com.kathien.donorua.activities.MainActivity" />
@@ -85,11 +83,12 @@
         <activity
             android:name=".activities.NewsInfoActivity"
             android:label="@string/title_activity_news_info"
-            android:parentActivityName=".activities.MainActivity" >
+            android:parentActivityName=".activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ua.com.kathien.donorua.activities.MainActivity" />
         </activity>
+        <activity android:name=".activities.EventsListActivity"></activity>
     </application>
 
 </manifest>

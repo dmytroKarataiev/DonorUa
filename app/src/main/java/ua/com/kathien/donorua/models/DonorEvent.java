@@ -3,18 +3,18 @@ package ua.com.kathien.donorua.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.net.URL;
 import java.util.Date;
 
 /**
  * Created by kathien on 8/18/16.
  */
-public class Event implements Parcelable {
+public class DonorEvent implements Parcelable {
 
     private int id;
     private String title;
     private String description;
     private String venueName;
+    private String venueAddress;
     private int cityId;
     private String cityName;
     private Date startDate;
@@ -22,12 +22,13 @@ public class Event implements Parcelable {
     private String body;
     private String conditions;
 
-    public Event(int id, String title, String description, String venueName, int cityId,
-                 String cityName, Date startDate, Date endDate, String body, String conditions) {
+    public DonorEvent(int id, String title, String description, String venueName, String venueAddress, int cityId,
+                      String cityName, Date startDate, Date endDate, String body, String conditions) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.venueName = venueName;
+        this.venueAddress = venueAddress;
         this.cityId = cityId;
         this.cityName = cityName;
         this.startDate = startDate;
@@ -38,7 +39,7 @@ public class Event implements Parcelable {
 
     @Override
     public String toString() {
-        String event = "Event: " + title + "\n" + description + "\n";
+        String event = "DonorEvent: " + title + "\n" + description + "\n" + cityName + ", " + venueAddress + "\n";
         return event;
     }
 
@@ -54,6 +55,7 @@ public class Event implements Parcelable {
         dest.writeString(title);
         dest.writeString(description);
         dest.writeString(venueName);
+        dest.writeString(venueAddress);
         dest.writeInt(cityId);
         dest.writeString(cityName);
         dest.writeLong(startDate != null ? startDate.getTime() : -1);//writing date as long. if date is null, write -1
@@ -62,11 +64,12 @@ public class Event implements Parcelable {
         dest.writeString(conditions);
     }
 
-    private Event(Parcel in) {
+    private DonorEvent(Parcel in) {
         id = in.readInt();
         title = in.readString();
         description = in.readString();
         venueName = in.readString();
+        venueAddress = in.readString();
         cityId = in.readInt();
         cityName = in.readString();
         long tmpDate = in.readLong();
@@ -77,13 +80,13 @@ public class Event implements Parcelable {
         conditions = in.readString();
     }
 
-    public static final Parcelable.Creator<Event> CREATOR = new Parcelable.Creator<Event>() {
-        public Event createFromParcel(Parcel in) {
-            return new Event(in);
+    public static final Parcelable.Creator<DonorEvent> CREATOR = new Parcelable.Creator<DonorEvent>() {
+        public DonorEvent createFromParcel(Parcel in) {
+            return new DonorEvent(in);
         }
 
-        public Event[] newArray(int size) {
-            return new Event[size];
+        public DonorEvent[] newArray(int size) {
+            return new DonorEvent[size];
         }
     };
 
@@ -117,6 +120,14 @@ public class Event implements Parcelable {
 
     public void setVenueName(String venueName) {
         this.venueName = venueName;
+    }
+
+    public String getVenueAddress() {
+        return venueAddress;
+    }
+
+    public void setVenueAddress(String venueAddress) {
+        this.venueAddress = venueAddress;
     }
 
     public int getCityId() {

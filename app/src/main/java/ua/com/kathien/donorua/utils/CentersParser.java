@@ -19,16 +19,10 @@ import ua.com.kathien.donorua.models.City;
  */
 public class CentersParser {
 
-    private ArrayList<City> cities = new ArrayList<>();
     private static final String REQUEST = "centers";
     private static final String LOG_TAG = CentersParser.class.getSimpleName();
 
-    public void parseCenters(ArrayList<Center> centers) {
-
-        //Parsing list of cities into the ArrayList to fill Center objects with city names
-        CityParser cityParser = new CityParser();
-        cityParser.parseCities(cities);
-
+    public void parseCenters(ArrayList<Center> centers, ArrayList<City> cities) {
 
         DonorJSONReader centersReader = new DonorJSONReader();
         String centersJSON = centersReader.readJSONfromURL(REQUEST);
