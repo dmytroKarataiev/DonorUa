@@ -71,6 +71,11 @@ public class MainActivity extends AppCompatActivity {
         centersShower.execute();
     }
 
+    public void showCentersMap() {
+        CentersMapShower centersMapShower = new CentersMapShower();
+        centersMapShower.execute();
+    }
+
     public void showRecipient() {
         RecipientsShower recipientsShower = new RecipientsShower();
         recipientsShower.execute();
@@ -240,6 +245,38 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
+    private class CentersMapShower extends AsyncTask<Void, Void, ArrayList<Center>> {
+
+        public CentersMapShower() {
+            super();
+        }
+
+        @Override
+        protected ArrayList<Center> doInBackground(Void... params) {
+            cities = parseAllCities();
+            centers = parseAllCenters();
+            return centers;
+        }
+
+
+        @Override
+        protected void onPostExecute(ArrayList<Center> result) {
+
+            if(result == null) {
+                Log.i(LOG_TAG, "center list is null");
+                return;
+            }
+            Intent testIntent = new Intent(MainActivity.this, CenterMapActivity.class);
+            testIntent.putExtra("OurCenters", result);
+
+            startActivity(testIntent);
+        }
+
+    }
+
+
     private class EventsShower extends AsyncTask<Void, Void, ArrayList<DonorEvent>> {
 
         public EventsShower() {
@@ -353,13 +390,13 @@ public class MainActivity extends AppCompatActivity {
                 switch(id) {
 
                     case R.id.centers_list:
-                        Toast.makeText(getApplicationContext(), "Center list", Toast.LENGTH_SHORT).show();
                         showCenters();
                         break;
-                    case R.id.centers_map:
-                        Toast.makeText(getApplicationContext(), "Center map", Toast.LENGTH_SHORT).show();
 
+                    case R.id.centers_map:
+                        showCentersMap();
                         break;
+
                     case R.id.recipients:
                         showRecipient();
                         break;
