@@ -1,16 +1,26 @@
 package ua.com.kathien.donorua.fragments;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -30,6 +40,7 @@ public class CenterMapFragment extends Fragment {
     private GoogleMap googleMap;
     private static final int ONE_CENTER_CENTERED = 13;
     private static final int UKRAINE_CENTERED = 5;
+    private static final int MY_PERMISSIONS_FINE_LOCATION = 2;
     private static final String LOG_TAG = CenterMapFragment.class.getSimpleName();
 
     public CenterMapFragment() {
@@ -58,24 +69,42 @@ public class CenterMapFragment extends Fragment {
             public void onMapReady(GoogleMap mMap) {
                 googleMap = mMap;
 
-                // For showing a move to my location button
-                googleMap.setMyLocationEnabled(true);
+                int permissionCheck = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION);
+
+                switch(permissionCheck) {
+                    case PackageManager.PERMISSION_GRANTED:
+                        googleMap.setMyLocationEnabled(true);
+                        break;
+
+                    case PackageManager.PERMISSION_DENIED:
+                        ActivityCompat.requestPermissions(getActivity(),
+                                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                MY_PERMISSIONS_FINE_LOCATION);
+                        break;
+
+                    default:
+                        Log.i(LOG_TAG, "ACCESS_FINE_LOCATION unexpected permission check result");
+                        break;
+                }
+
+       //         googleMap.setMyLocationEnabled(true);
 
                 centers = getActivity().getIntent().getParcelableArrayListExtra("OurCenters");
 
-                for(Center center: centers) {
+                for (Center center : centers) {
                     LatLng centerLatLng = new LatLng(center.getLoc().getLatitude(), center.getLoc().getLongitude());
 
                     googleMap.addMarker(new MarkerOptions()
                             .title(center.getName())
                             .snippet(center.getStreet())
-                            .position(centerLatLng));
+                            .position(centerLatLng)
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)));
 
                 }
 
                 LatLng centerLatLng = new LatLng(centers.get(0).getLoc().getLatitude(), centers.get(0).getLoc().getLongitude());
                 int zoomValue;
-                if(centers.size() == 1) {
+                if (centers.size() == 1) {
                     zoomValue = ONE_CENTER_CENTERED;
                 } else {
                     zoomValue = UKRAINE_CENTERED;
@@ -89,6 +118,27 @@ public class CenterMapFragment extends Fragment {
 
         return rootView;
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch(requestCode) {
+            case MY_PERMISSIONS_FINE_LOCATION:
+                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    googleMap.setMyLocationEnabled(true);
+                } else {
+                    googleMap.setMyLocationEnabled(false);
+                    /*Snackbar snackbar = Snackbar
+                            .make(coordinatorLayout, "Call permission needed", Snackbar.LENGTH_LONG);
+                    snackbar.show();*/
+                }
+                break;
+            default:
+                Log.e(LOG_TAG, "Unknown permission request code");
+                break;
+        }
+    }
+
 
 
     @Override

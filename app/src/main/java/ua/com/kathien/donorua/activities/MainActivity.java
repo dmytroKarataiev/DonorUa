@@ -1,12 +1,19 @@
 package ua.com.kathien.donorua.activities;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +25,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import ua.com.kathien.donorua.R;
@@ -39,12 +45,12 @@ public class MainActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
+    private CoordinatorLayout coordinatorLayout;
 
     private ArrayList<Center> centers;
     private ArrayList<Recipient> recipients;
     private ArrayList<News> news;
     private ArrayList<City> cities;
-    private ArrayList<DonorEvent> events;
 
     private boolean recipientsDownloaded;
     private boolean centersDownloaded;
@@ -81,14 +87,6 @@ public class MainActivity extends AppCompatActivity {
         recipientsShower.execute();
     }
 
-    public void showEvents() {
-        EventsShower eventsShower = new EventsShower();
-        eventsShower.execute();
-    }
-
-    public void fetchCities() {
-
-    }
 
     public boolean isOnline() {
         boolean isOnline;
@@ -100,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Center> parseAllCenters() {
 
-        if(centersDownloaded) {
+        if (centersDownloaded) {
             return centers;
         }
         //TODO: How to show user that there is no internet connection?
@@ -121,22 +119,6 @@ public class MainActivity extends AppCompatActivity {
         return centers;
     }
 
-    private ArrayList<DonorEvent> parseAllEvents() {
-
-        if(eventsDownloaded) {
-            return events;
-        }
-
-        if(!isOnline()) {
-            return null;
-        }
-
-        EventsParser eventsParser = new EventsParser();
-        eventsParser.parseEvents(events, cities);
-        eventsDownloaded = true;
-
-        return events;
-    }
 
     private ArrayList<News> parseAllNews() {
         if (newsDownloaded) {
@@ -160,10 +142,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private ArrayList<City> parseAllCities() {
-        if(citiesDownloaded) {
+        if (citiesDownloaded) {
             return cities;
         }
-        if(!isOnline()) {
+        if (!isOnline()) {
             return null;
         }
         CityParser cityParser = new CityParser();
@@ -174,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private ArrayList<Recipient> parseAllRecipients() {
-        if(recipientsDownloaded) {
+        if (recipientsDownloaded) {
             return recipients;
         }
         if (!isOnline()) {
@@ -208,11 +190,14 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(ArrayList<News> result) {
-            if(result == null) {
+            if (result == null) {
                 Log.v(LOG_TAG, "news list is null");
                 return;
             }
-            Log.i(LOG_TAG + "news", news.toString());
+            Intent newsIntent = new Intent(MainActivity.this, NewsListActivity.class);
+            newsIntent.putExtra("news", result);
+            Log.i(LOG_TAG + "news", result.toString());
+            startActivity(newsIntent);
         }
     }
 
@@ -233,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(ArrayList<Center> result) {
 
-            if(result == null) {
+            if (result == null) {
                 Log.i(LOG_TAG, "center list is null");
                 return;
             }
@@ -244,7 +229,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
 
 
     private class CentersMapShower extends AsyncTask<Void, Void, ArrayList<Center>> {
@@ -264,7 +248,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(ArrayList<Center> result) {
 
-            if(result == null) {
+            if (result == null) {
                 Log.i(LOG_TAG, "center list is null");
                 return;
             }
@@ -275,38 +259,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
-
-    private class EventsShower extends AsyncTask<Void, Void, ArrayList<DonorEvent>> {
-
-        public EventsShower() {
-            super();
-        }
-
-        @Override
-        protected ArrayList<DonorEvent> doInBackground(Void... params) {
-            cities = parseAllCities();
-            events = parseAllEvents();
-            return events;
-        }
-
-
-        @Override
-        protected void onPostExecute(ArrayList<DonorEvent> result) {
-
-            if(result == null) {
-                Log.i(LOG_TAG, "events list is null");
-                return;
-            }
-            /*Intent testIntent = new Intent(MainActivity.this, EventsListActivity.class);
-            testIntent.putExtra("events", result);
-
-            startActivity(testIntent);*/
-            Log.i(LOG_TAG, events.toString());
-        }
-
-    }
-
 
 
     private class RecipientsShower extends AsyncTask<Void, Void, ArrayList<Recipient>> {
@@ -323,7 +275,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(ArrayList<Recipient> result) {
-            if(result == null) {
+            if (result == null) {
                 Log.i(LOG_TAG, "recipient list is null");
             }
             Intent recipientIntent = new Intent(MainActivity.this, RecipientListActivity.class);
@@ -332,8 +284,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
-
 
 
     @Override
@@ -364,7 +314,6 @@ public class MainActivity extends AppCompatActivity {
         recipients = new ArrayList<>();
         news = new ArrayList<>();
         cities = new ArrayList<>();
-        events = new ArrayList<>();
 
         recipientsDownloaded = false;
         centersDownloaded = false;
@@ -372,6 +321,7 @@ public class MainActivity extends AppCompatActivity {
         citiesDownloaded = false;
         eventsDownloaded = false;
 
+        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator_main_activity);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
@@ -387,7 +337,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 int id = menuItem.getItemId();
 
-                switch(id) {
+                switch (id) {
 
                     case R.id.centers_list:
                         showCenters();
@@ -410,10 +360,6 @@ public class MainActivity extends AppCompatActivity {
                         showNews();
                         break;
 
-                    case R.id.events:
-                        showEvents();
-                        break;
-
                     default:
                         Toast.makeText(getApplicationContext(), "Menu item unknown", Toast.LENGTH_SHORT).show();
                         break;
@@ -425,14 +371,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
 
         ActionBarDrawerToggle actionBarDrawerToggle =
                 new ActionBarDrawerToggle(this, drawerLayout, toolbar,
-                        R.string.drawer_open, R.string.drawer_close){
+                        R.string.drawer_open, R.string.drawer_close) {
                     @Override
-                    public void onDrawerClosed(View v){
+                    public void onDrawerClosed(View v) {
                         super.onDrawerClosed(v);
                     }
 
@@ -448,5 +394,58 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /*public void showEvents() {
+        EventsShower eventsShower = new EventsShower();
+        eventsShower.execute();
+    }*/
 
+    /*private ArrayList<DonorEvent> parseAllEvents() {
+
+        if(eventsDownloaded) {
+            return events;
+        }
+
+        if(!isOnline()) {
+            return null;
+        }
+
+        EventsParser eventsParser = new EventsParser();
+        eventsParser.parseEvents(events, cities);
+        eventsDownloaded = true;
+
+        return events;
+     }*/
+
+
+    /*private class EventsShower extends AsyncTask<Void, Void, ArrayList<DonorEvent>> {
+
+        public EventsShower() {
+            super();
+        }
+
+        @Override
+        protected ArrayList<DonorEvent> doInBackground(Void... params) {
+            cities = parseAllCities();
+            events = parseAllEvents();
+            return events;
+        }
+
+
+        @Override
+        protected void onPostExecute(ArrayList<DonorEvent> result) {
+
+            if (result == null) {
+                Log.i(LOG_TAG, "events list is null");
+                return;
+            }
+            Intent eventsIntent = new Intent(MainActivity.this, EventsListActivity.class);
+            eventsIntent.putExtra("events", result);
+
+            startActivity(eventsIntent);
+            Log.i(LOG_TAG, events.toString());
+        }
+
+    }*/
 }
+
+

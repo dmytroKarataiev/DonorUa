@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import ua.com.kathien.donorua.R;
 import ua.com.kathien.donorua.models.Center;
+import ua.com.kathien.donorua.utils.DividerItemDecoration;
 import ua.com.kathien.donorua.views.adapters.CentersAdapter;
 
 /**
@@ -23,8 +24,6 @@ public class CenterListFragment extends Fragment {
 
     private ArrayList<Center> centers;
     private RecyclerView centersRecyclerView;
-    private RecyclerView.Adapter centersAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
     private static final String LOG_TAG = CenterListFragment.class.getSimpleName();
 
     public CenterListFragment() {
@@ -50,6 +49,8 @@ public class CenterListFragment extends Fragment {
 
 
         centersRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST);
+        centersRecyclerView.addItemDecoration(itemDecoration);
         centersRecyclerView.setAdapter(new CentersAdapter(centers));
 
 

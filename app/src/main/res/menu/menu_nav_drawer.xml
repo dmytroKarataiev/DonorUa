@@ -21,9 +21,5 @@
         android:id="@+id/news"
         android:title="@string/nav_drawer_news"
         android:icon="@drawable/ic_drawer_item"/>
-    <item
-        android:id="@+id/events"
-        android:title="@string/nav_drawer_events"
-        android:icon="@drawable/ic_drawer_item"/>
 
 </menu>

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import ua.com.kathien.donorua.R;
 import ua.com.kathien.donorua.models.Recipient;
+import ua.com.kathien.donorua.utils.DividerItemDecoration;
 import ua.com.kathien.donorua.views.adapters.RecipientsAdapter;
 
 public class RecipientListFragment extends Fragment {
@@ -41,6 +42,9 @@ public class RecipientListFragment extends Fragment {
         recipientsRecyclerView.setHasFixedSize(true);
 
         recipientsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST);
+        recipientsRecyclerView.addItemDecoration(itemDecoration);
+
         recipientsRecyclerView.setAdapter(new RecipientsAdapter(recipients));
 
         return view;
