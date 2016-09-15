@@ -1,5 +1,6 @@
 package ua.com.kathien.donorua.fragments;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,8 +13,10 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import ua.com.kathien.donorua.R;
+import ua.com.kathien.donorua.activities.RecipientInfoActivity;
 import ua.com.kathien.donorua.models.Recipient;
 import ua.com.kathien.donorua.utils.DividerItemDecoration;
+import ua.com.kathien.donorua.utils.ItemClickSupport;
 import ua.com.kathien.donorua.views.adapters.RecipientsAdapter;
 
 public class RecipientListFragment extends Fragment {
@@ -46,6 +49,17 @@ public class RecipientListFragment extends Fragment {
         recipientsRecyclerView.addItemDecoration(itemDecoration);
 
         recipientsRecyclerView.setAdapter(new RecipientsAdapter(recipients));
+
+        ItemClickSupport.addTo(recipientsRecyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener(){
+           @Override
+           public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+               Recipient clickedRecipient = recipients.get(position);
+
+               Intent recipientInfoIntent = new Intent(getActivity(), RecipientInfoActivity.class);
+               recipientInfoIntent.putExtra("recipient", clickedRecipient);
+               startActivity(recipientInfoIntent);
+           }
+        });
 
         return view;
     }

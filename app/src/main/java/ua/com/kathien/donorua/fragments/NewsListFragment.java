@@ -1,5 +1,6 @@
 package ua.com.kathien.donorua.fragments;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,8 +14,10 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import ua.com.kathien.donorua.R;
+import ua.com.kathien.donorua.activities.NewsInfoActivity;
 import ua.com.kathien.donorua.models.News;
 import ua.com.kathien.donorua.utils.DividerItemDecoration;
+import ua.com.kathien.donorua.utils.ItemClickSupport;
 import ua.com.kathien.donorua.views.adapters.NewsAdapter;
 
 /**
@@ -48,6 +51,17 @@ public class NewsListFragment extends Fragment {
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST);
         newsRecyclerView.addItemDecoration(itemDecoration);
         newsRecyclerView.setAdapter(new NewsAdapter(news));
+
+        ItemClickSupport.addTo(newsRecyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener(){
+           @Override
+            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+               News newsClicked = news.get(position);
+
+               Intent newsInfoIntent = new Intent(getActivity(), NewsInfoActivity.class);
+               newsInfoIntent.putExtra("news", newsClicked);
+               startActivity(newsInfoIntent);
+           }
+        });
 
         return view;
     }
