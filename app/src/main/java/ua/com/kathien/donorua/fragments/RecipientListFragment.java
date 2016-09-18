@@ -24,6 +24,7 @@ public class RecipientListFragment extends Fragment {
     private static final String LOG_TAG = RecipientListFragment.class.getSimpleName();
     private ArrayList<Recipient> recipients;
     private RecyclerView recipientsRecyclerView;
+    public static final String RECIPIENT_EXTRA_TAG = "recipient";
 
 
     public RecipientListFragment() {
@@ -56,7 +57,7 @@ public class RecipientListFragment extends Fragment {
                Recipient clickedRecipient = recipients.get(position);
 
                Intent recipientInfoIntent = new Intent(getActivity(), RecipientInfoActivity.class);
-               recipientInfoIntent.putExtra("recipient", clickedRecipient);
+               recipientInfoIntent.putExtra(RECIPIENT_EXTRA_TAG, clickedRecipient);
                startActivity(recipientInfoIntent);
            }
         });

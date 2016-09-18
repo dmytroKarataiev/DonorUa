@@ -28,6 +28,7 @@ public class NewsListFragment extends Fragment {
     private ArrayList<News> news;
     private RecyclerView newsRecyclerView;
     private static final String LOG_TAG = NewsListFragment.class.getSimpleName();
+    public static final String NEWS_EXTRA_TAG = "news";
 
     public NewsListFragment() {
     }
@@ -58,7 +59,7 @@ public class NewsListFragment extends Fragment {
                News newsClicked = news.get(position);
 
                Intent newsInfoIntent = new Intent(getActivity(), NewsInfoActivity.class);
-               newsInfoIntent.putExtra("news", newsClicked);
+               newsInfoIntent.putExtra(NEWS_EXTRA_TAG, newsClicked);
                startActivity(newsInfoIntent);
            }
         });

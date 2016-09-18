@@ -29,7 +29,9 @@ public class CenterListFragment extends Fragment {
     private ArrayList<Center> centers;
     private RecyclerView centersRecyclerView;
     private CentersAdapter centersAdapter;
+
     private static final String LOG_TAG = CenterListFragment.class.getSimpleName();
+    public static final String CENTER_EXTRA_TAG = "center";
 
     public CenterListFragment() {
     }
@@ -66,7 +68,7 @@ public class CenterListFragment extends Fragment {
                 //Toast.makeText(getActivity(), "Clicked on center " + clickedCenter.getName(), Toast.LENGTH_SHORT).show();
 
                 Intent centerInfoIntent = new Intent(getActivity(), CenterInfoActivity.class);
-                centerInfoIntent.putExtra("center", clickedCenter);
+                centerInfoIntent.putExtra(CENTER_EXTRA_TAG, clickedCenter);
                 startActivity(centerInfoIntent);
             }
         });
