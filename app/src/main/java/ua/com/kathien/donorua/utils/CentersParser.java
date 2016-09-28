@@ -22,10 +22,12 @@ public class CentersParser {
     private static final String REQUEST = "centers";
     private static final String LOG_TAG = CentersParser.class.getSimpleName();
 
-    public void parseCenters(ArrayList<Center> centers, ArrayList<City> cities) {
+    public void parseCenters(ArrayList<Center> centers) {
 
         DonorJSONReader centersReader = new DonorJSONReader();
         String centersJSON = centersReader.readJSONfromURL(REQUEST);
+        CityParser cityParser = new CityParser();
+        ArrayList<City> cities = cityParser.parseCities();
 
         if(centersJSON == null) {
             Log.i(LOG_TAG, "JSON Centers is null");

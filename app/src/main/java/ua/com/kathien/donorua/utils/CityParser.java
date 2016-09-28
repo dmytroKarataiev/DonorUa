@@ -18,13 +18,14 @@ public class CityParser {
     private static final String REQUEST = "cities";
     private static final String LOG_TAG = CityParser.class.getSimpleName();
 
-    public void parseCities(ArrayList<City> cities){
+    public ArrayList<City> parseCities(){
+        ArrayList<City> cities = new ArrayList<>();
         DonorJSONReader cityReader = new DonorJSONReader();
         String citiesJSON = cityReader.readJSONfromURL(REQUEST);
 
         if(citiesJSON == null || citiesJSON == "") {
             Log.e("CityParser", "citiesJSON is null");
-            return;
+            return null;
         }
 
         try {
@@ -53,5 +54,6 @@ public class CityParser {
         }
 
 
+        return cities;
     }
 }

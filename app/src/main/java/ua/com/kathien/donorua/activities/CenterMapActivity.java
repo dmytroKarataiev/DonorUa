@@ -4,15 +4,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 
 import ua.com.kathien.donorua.R;
 
-public class CenterMapActivity extends AppCompatActivity {
+public class CenterMapActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_center_map);
+        FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.base_content_frame);
+        getLayoutInflater().inflate(R.layout.activity_center_map, contentFrameLayout);
     }
 
 

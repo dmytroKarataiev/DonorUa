@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -29,6 +30,9 @@ import java.util.ArrayList;
 
 import ua.com.kathien.donorua.R;
 import ua.com.kathien.donorua.models.Center;
+import ua.com.kathien.donorua.utils.CentersParser;
+import ua.com.kathien.donorua.utils.OnlineHelper;
+import ua.com.kathien.donorua.views.adapters.CentersAdapter;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -37,6 +41,7 @@ public class CenterMapFragment extends Fragment {
 
     private MapView mMapView;
     private ArrayList<Center> centers;
+    private boolean centersDownloaded;
     private GoogleMap googleMap;
     private static final int ONE_CENTER_CENTERED = 13;
     private static final int UKRAINE_CENTERED = 5;
@@ -55,6 +60,8 @@ public class CenterMapFragment extends Fragment {
         mMapView.onCreate(savedInstanceState);
 
         centers = new ArrayList<>();
+        centersDownloaded = false;
+
 
         mMapView.onResume();
 
@@ -87,31 +94,9 @@ public class CenterMapFragment extends Fragment {
                         break;
                 }
 
-       //         googleMap.setMyLocationEnabled(true);
 
-                centers = getActivity().getIntent().getParcelableArrayListExtra("OurCenters");
-
-                for (Center center : centers) {
-                    LatLng centerLatLng = new LatLng(center.getLoc().getLatitude(), center.getLoc().getLongitude());
-
-                    googleMap.addMarker(new MarkerOptions()
-                            .title(center.getName())
-                            .snippet(center.getStreet())
-                            .position(centerLatLng)
-                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)));
-
-                }
-
-                LatLng centerLatLng = new LatLng(centers.get(0).getLoc().getLatitude(), centers.get(0).getLoc().getLongitude());
-                int zoomValue;
-                if (centers.size() == 1) {
-                    zoomValue = ONE_CENTER_CENTERED;
-                } else {
-                    zoomValue = UKRAINE_CENTERED;
-                }
-
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(centerLatLng, zoomValue));
-
+                CentersShower centersShower = new CentersShower();
+                centersShower.execute();
 
             }
         });
@@ -163,5 +148,59 @@ public class CenterMapFragment extends Fragment {
     public void onLowMemory() {
         super.onLowMemory();
         mMapView.onLowMemory();
+    }
+
+    private class CentersShower extends AsyncTask<Void, Void, ArrayList<Center>> {
+
+        public CentersShower() {
+            super();
+        }
+
+        @Override
+        protected ArrayList<Center> doInBackground(Void... params) {
+            if (centersDownloaded) {
+                return centers;
+            } else if (!OnlineHelper.isOnline(getActivity())) {
+                return null;
+            } else {
+                CentersParser centersParser = new CentersParser();
+                centersParser.parseCenters(centers);
+                centersDownloaded = true;
+            }
+            return centers;
+        }
+
+
+        @Override
+        protected void onPostExecute(ArrayList<Center> result) {
+
+            if (result == null) {
+                Log.i(LOG_TAG, "center list is null");
+                return;
+            }
+
+            for (Center center : centers) {
+                LatLng centerLatLng = new LatLng(center.getLoc().getLatitude(), center.getLoc().getLongitude());
+
+                googleMap.addMarker(new MarkerOptions()
+                        .title(center.getName())
+                        .snippet(center.getStreet())
+                        .position(centerLatLng)
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)));
+
+            }
+
+            LatLng centerLatLng = new LatLng(centers.get(0).getLoc().getLatitude(), centers.get(0).getLoc().getLongitude());
+            int zoomValue;
+            if (centers.size() == 1) {
+                zoomValue = ONE_CENTER_CENTERED;
+            } else {
+                zoomValue = UKRAINE_CENTERED;
+            }
+
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(centerLatLng, zoomValue));
+
+        }
+
     }
 }

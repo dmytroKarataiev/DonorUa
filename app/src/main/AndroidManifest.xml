@@ -92,10 +92,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ua.com.kathien.donorua.activities.MainActivity" />
         </activity>
-
-
-
-        <activity android:name=".activities.EventsListActivity"></activity>
+        <activity android:name=".activities.EventsListActivity" />
+        <activity android:name=".activities.BaseActivity"></activity>
     </application>
 
 </manifest>

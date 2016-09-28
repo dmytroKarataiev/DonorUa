@@ -1,26 +1,23 @@
 package ua.com.kathien.donorua.activities;
 
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 
 import ua.com.kathien.donorua.R;
 
-public class NewsListActivity extends AppCompatActivity {
+public class NewsListActivity extends BaseActivity {
 
-    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_news_list);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.base_content_frame);
+        getLayoutInflater().inflate(R.layout.activity_news_list, contentFrameLayout);
 
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
 

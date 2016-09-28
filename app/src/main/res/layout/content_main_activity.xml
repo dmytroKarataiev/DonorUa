@@ -9,6 +9,6 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:textSize="24sp"
-        android:text="Navigation Drawer Test" />
+        android:text="Main Activity Text" />
 
 </RelativeLayout>
