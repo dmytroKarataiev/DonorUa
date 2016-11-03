@@ -1,25 +1,57 @@
 package ua.com.kathien.donorua.activities;
 
+import android.app.ProgressDialog;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+
+import java.io.InputStream;
+import java.net.URL;
 
 import ua.com.kathien.donorua.R;
+import ua.com.kathien.donorua.fragments.CenterInfoFragment;
 
 public class CenterInfoActivity extends AppCompatActivity {
 
+    private ImageView img;
+    private Bitmap bitmap;
+    private ProgressDialog pDialog;
     private Toolbar toolbar;
+    private static final String LOG_TAG = CenterInfoActivity.class.getSimpleName();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_center_info);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        img = (ImageView) findViewById(R.id.center_info_image);
+        if(img == null) {
+            Log.i(LOG_TAG, "img imageView is null");
+        }
+
+
+        LoadImage loadImage = new LoadImage();
+        loadImage.execute();
+
+        toolbar = (Toolbar) findViewById(R.id.center_info_toolbar);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+// Replace the contents of the container with the new fragment
+        ft.replace(R.id.your_placeholder, new CenterInfoFragment());
+// or ft.add(R.id.your_placeholder, new FooFragment());
+// Complete the changes added above
+        ft.commit();
     }
 
 
@@ -43,5 +75,42 @@ public class CenterInfoActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private class LoadImage extends AsyncTask<String, String, Bitmap> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(CenterInfoActivity.this);
+            pDialog.setMessage("Loading Image ....");
+            pDialog.show();
+
+        }
+
+        protected Bitmap doInBackground(String... args) {
+            try {
+                bitmap = BitmapFactory.decodeStream((InputStream) new URL("https://pp.vk.me/c626319/v626319162/2b47f/VMhy5BwvwtA.jpg").getContent());
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return bitmap;
+        }
+
+        protected void onPostExecute(Bitmap image) {
+
+            if (image != null) {
+                img.setImageBitmap(image);
+                pDialog.dismiss();
+
+            } else {
+
+                pDialog.dismiss();
+                /*Snackbar snackbar = Snackbar.
+                        make(coordinatorLayout, "Image Does Not exist or Network Error", Snackbar.LENGTH_SHORT);
+                snackbar.show();*/
+                Log.i(LOG_TAG, "Image Does Not exist or Network Error");
+            }
+        }
     }
 }

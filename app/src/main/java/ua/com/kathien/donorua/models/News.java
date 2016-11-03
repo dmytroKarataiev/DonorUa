@@ -6,9 +6,7 @@ import android.os.Parcelable;
 import java.net.URL;
 import java.util.Date;
 
-/**
- * Created by kathien on 8/17/16.
- */
+
 public class News implements Parcelable {
 
     private int id;

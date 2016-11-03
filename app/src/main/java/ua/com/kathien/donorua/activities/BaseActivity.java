@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import ua.com.kathien.donorua.R;
 import ua.com.kathien.donorua.utils.OnlineHelper;
@@ -19,7 +20,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
     protected DrawerLayout drawerLayout;
     private Toolbar toolbar;
-    private CoordinatorLayout coordinatorLayout;
+    private RelativeLayout relativeLayout;
     private NavigationView navigationView;
 
     @Override
@@ -34,7 +35,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.base_drawer_layout);
-        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.base_coordinator_layout);
+        relativeLayout = (RelativeLayout) findViewById(R.id.base_coordinator_layout);
 
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -61,7 +62,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         drawerLayout.closeDrawer(navigationView);
-        Snackbar snackbar;
+        //Snackbar snackbar;
         if (OnlineHelper.isOnline(this)) {
             switch (item.getItemId()) {
                 case R.id.centers_list:
@@ -86,14 +87,14 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
                     startActivity(newsListIntent);
                     break;
                 default:
-                    snackbar = Snackbar
+                    /*snackbar = Snackbar
                             .make(coordinatorLayout, "Unknown option selected", Snackbar.LENGTH_SHORT);
-                    snackbar.show();
+                    snackbar.show();*/
                     break;
             }
         } else {
-            snackbar = Snackbar.make(coordinatorLayout, "Turn on internet connection", Snackbar.LENGTH_INDEFINITE);
-            snackbar.show();
+            //snackbar = Snackbar.make(coordinatorLayout, "Turn on internet connection", Snackbar.LENGTH_INDEFINITE);
+            //snackbar.show();
         }
 
         return false;

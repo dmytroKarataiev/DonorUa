@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -19,16 +20,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import ua.com.kathien.donorua.R;
 
-public class HotlineActivity extends AppCompatActivity {
+public class HotlineActivity extends BaseActivity {
 
-
-    private Toolbar toolbar;
-    private DrawerLayout drawerLayout;
-    private Button callHotlineButton;
+    private FloatingActionButton callHotlineButton;
     private CoordinatorLayout coordinatorLayout;
 
     //private static final String NUMBER = "tel:0672080303";
@@ -41,20 +40,18 @@ public class HotlineActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hotline);
+
+        FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.base_content_frame);
+        getLayoutInflater().inflate(R.layout.activity_hotline, contentFrameLayout);
 
         initComponents();
     }
 
     public void initComponents() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator_hotline_activity);
 
-        callHotlineButton = (Button) findViewById(R.id.btn_call_hotline);
+        callHotlineButton = (FloatingActionButton) findViewById(R.id.fab_call_hotline);
         callHotlineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,66 +59,8 @@ public class HotlineActivity extends AppCompatActivity {
             }
         });
 
-        initNavigationDrawer();
     }
 
-    public void initNavigationDrawer() {
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener()  {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
-                int id = menuItem.getItemId();
-
-                switch(id) {
-
-                    case R.id.centers_list:
-                        Toast.makeText(getApplicationContext(), "Center list", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.centers_map:
-                        Toast.makeText(getApplicationContext(), "Center map", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.recipients:
-                        Toast.makeText(getApplicationContext(), "Recipients", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.hotline:
-                        Toast.makeText(getApplicationContext(), "Hot line", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.news:
-                        Toast.makeText(getApplicationContext(), "News", Toast.LENGTH_SHORT).show();
-                        break;
-                    default:
-                        Toast.makeText(getApplicationContext(), "Menu item unknown", Toast.LENGTH_SHORT).show();
-                        break;
-
-                }
-
-
-                return true;
-            }
-        });
-
-        drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
-
-
-        ActionBarDrawerToggle actionBarDrawerToggle =
-                new ActionBarDrawerToggle(this, drawerLayout, toolbar,
-                        R.string.drawer_open, R.string.drawer_close){
-                    @Override
-                    public void onDrawerClosed(View v){
-                        super.onDrawerClosed(v);
-                    }
-
-                    @Override
-                    public void onDrawerOpened(View v) {
-                        super.onDrawerOpened(v);
-                    }
-                };
-
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
-
-
-    }
 
     public void makeCall() {
         int permissionCheck = ContextCompat.checkSelfPermission(HotlineActivity.this,
