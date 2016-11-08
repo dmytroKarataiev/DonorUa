@@ -65,8 +65,6 @@
     <string name="navigation">Меню</string>
     <string name="btn_recipient_link">Посилання</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_hotline">Hotline</string>
 
     <string name="hello_world">Hello world!</string>

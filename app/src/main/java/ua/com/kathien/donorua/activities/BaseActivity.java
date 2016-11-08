@@ -20,7 +20,6 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
     protected DrawerLayout drawerLayout;
     private Toolbar toolbar;
-    private RelativeLayout relativeLayout;
     private NavigationView navigationView;
     private CoordinatorLayout coordinatorLayout;
 

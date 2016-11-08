@@ -18,6 +18,8 @@ import java.net.URL;
 
 import ua.com.kathien.donorua.R;
 import ua.com.kathien.donorua.fragments.CenterInfoFragment;
+import ua.com.kathien.donorua.fragments.CenterListFragment;
+import ua.com.kathien.donorua.models.Center;
 
 public class CenterInfoActivity extends AppCompatActivity {
 
@@ -43,14 +45,14 @@ public class CenterInfoActivity extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.center_info_toolbar);
 
+        Center center = getIntent().getParcelableExtra(CenterListFragment.CENTER_EXTRA_TAG);
+        toolbar.setTitle(center.getName());
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-// Replace the contents of the container with the new fragment
         ft.replace(R.id.your_placeholder, new CenterInfoFragment());
-// or ft.add(R.id.your_placeholder, new FooFragment());
-// Complete the changes added above
         ft.commit();
     }
 
