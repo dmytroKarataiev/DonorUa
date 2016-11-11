@@ -38,35 +38,35 @@ public class EventsParser {
                 JSONObject event = eventsArrayJson.getJSONObject(i);
 
                 int id = event.getInt("id");
-                String title = event.getString("title");
-                String description = event.getString("description");
-                String venueName = event.getString("venueName");
-                String venueAddress = event.getString("venueAddress");
+                String title = JSONVerifier.checkStringFromJson(event.getString("title"));
+                String description = JSONVerifier.checkStringFromJson(event.getString("description"));
+                String venueName = JSONVerifier.checkStringFromJson(event.getString("venueName"));
+                String venueAddress = JSONVerifier.checkStringFromJson(event.getString("venueAddress"));
 
                 int cityId = event.getInt("cityId");
                 String cityName = null;
                 for(City city : cities) {
                     if(city.getId() == cityId) {
-                        cityName = city.getNameUA();
+                        cityName = JSONVerifier.checkStringFromJson(city.getNameUA());
                         break;
                     }
                 }
 
                 Date startDate = null;
                 try {
-                    startDate = DataUtils.stringToDate(event.getString("startDate"));
+                    startDate = DataUtils.stringToDate(JSONVerifier.checkStringFromJson(event.getString("startDate")));
                 } catch (ParseException e) {
                     Log.i(LOG_TAG, "Parse exception in startSate in event " + id);
                 }
                 Date endDate = null;
                 try {
-                    startDate = DataUtils.stringToDate(event.getString("endDate"));
+                    startDate = DataUtils.stringToDate(JSONVerifier.checkStringFromJson(event.getString("endDate")));
                 } catch (ParseException e) {
                     Log.i(LOG_TAG, "Parse exception in endDate in event " + id);
                 }
 
-                String body = event.getString("body");
-                String conditions = event.getString("price");
+                String body = JSONVerifier.checkStringFromJson(event.getString("body"));
+                String conditions = JSONVerifier.checkStringFromJson(event.getString("price"));
 
                 DonorEvent newEvent = new DonorEvent(id, title, description, venueName, venueAddress,
                         cityId, cityName, startDate, endDate, body, conditions);

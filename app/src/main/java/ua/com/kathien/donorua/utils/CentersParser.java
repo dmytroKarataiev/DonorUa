@@ -14,9 +14,6 @@ import java.util.ArrayList;
 import ua.com.kathien.donorua.models.Center;
 import ua.com.kathien.donorua.models.City;
 
-/**
- * Created by kathien on 8/11/16.
- */
 public class CentersParser {
 
     private static final String REQUEST = "centers";
@@ -41,7 +38,8 @@ public class CentersParser {
             for(int i=0; i < centersArray.length(); i++){
                 JSONObject center = centersArray.getJSONObject(i);
 
-                String street = center.getString("street");
+                String street = JSONVerifier.checkStringFromJson(center.getString("street"));
+
                 int cityId = center.getInt("cityId");
 
                 //Creating String with city name in ukrainian to put it into center object
@@ -55,6 +53,7 @@ public class CentersParser {
                 }
 
                 int id = center.getInt("id");
+
                 Center.Gender gender = Center.Gender.ANYONE;
                 try {
                     gender = Center.Gender.values()[center.getInt("sex")];
@@ -64,19 +63,21 @@ public class CentersParser {
 
 
                 boolean ignoreRegion = center.getBoolean("ignoreRegion");
-                String description = center.getString("description");
-                String about = center.getString("about");
+
+                String description = JSONVerifier.checkStringFromJson(center.getString("description"));
+
+                String about = JSONVerifier.checkStringFromJson(center.getString("about"));
 
                 URL website = null;
                 try {
-                    website = new URL(center.getString("website"));
+                    website = new URL(JSONVerifier.checkStringFromJson(center.getString("website")));
                 } catch (MalformedURLException ex) {
                     Log.d(LOG_TAG, "MalformedURL in Center " + id);
                 }
 
-                String name = center.getString("name");
-                String email = center.getString("email");
-                String phoneNumber = center.getString("phone");
+                String name = JSONVerifier.checkStringFromJson(center.getString("name"));
+                String email = JSONVerifier.checkStringFromJson(center.getString("email"));
+                String phoneNumber = JSONVerifier.checkStringFromJson(center.getString("phone"));
                 Location location = new Location("");
                 location.setLongitude(center.getDouble("longitude"));
                 location.setLatitude(center.getDouble("latitude"));

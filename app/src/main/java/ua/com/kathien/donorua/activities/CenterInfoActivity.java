@@ -44,12 +44,11 @@ public class CenterInfoActivity extends AppCompatActivity {
         loadImage.execute();
 
         toolbar = (Toolbar) findViewById(R.id.center_info_toolbar);
-
-        Center center = getIntent().getParcelableExtra(CenterListFragment.CENTER_EXTRA_TAG);
-        toolbar.setTitle(center.getName());
-
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+/*
+        Center center = getIntent().getParcelableExtra(CenterListFragment.CENTER_EXTRA_TAG);
+        toolbar.setTitle(center.getName());*/
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.your_placeholder, new CenterInfoFragment());

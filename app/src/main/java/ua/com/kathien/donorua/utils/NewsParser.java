@@ -26,7 +26,8 @@ public class NewsParser {
         DonorJSONReader newsReader = new DonorJSONReader();
         String newsJSON = newsReader.readJSONfromURL(REQUEST);
 
-        if(newsJSON == null || newsJSON == "") {
+        //FIXME: null check json
+        if(newsJSON == null || newsJSON.trim() == "") {
             Log.e(LOG_TAG, "JSON is null");
             return;
         }
@@ -42,14 +43,14 @@ public class NewsParser {
 
                 Date datePublished = null;
                 try {
-                    datePublished = DataUtils.stringToDate(newsObject.getString("datePublished"));
+                    datePublished = DataUtils.stringToDate(JSONVerifier.checkStringFromJson(newsObject.getString("datePublished")));
                 } catch (ParseException e) {
                     Log.i(LOG_TAG, "Parse exception in datePublished in news " + id);
                 }
 
                 Date lastUpdated = null;
                 try {
-                    lastUpdated = DataUtils.stringToDate(newsObject.getString("lastUpdatedDate"));
+                    lastUpdated = DataUtils.stringToDate(JSONVerifier.checkStringFromJson(newsObject.getString("lastUpdatedDate")));
                 } catch (ParseException e) {
                     Log.i(LOG_TAG, "Parse exception in lastUpdated in news " + id);
                 }
@@ -59,22 +60,22 @@ public class NewsParser {
 
                 URL image = null;
                 try {
-                    image = new URL(newsObject.getString("image"));
+                    image = new URL(JSONVerifier.checkStringFromJson(newsObject.getString("image")));
                 } catch (MalformedURLException e) {
                     Log.i(LOG_TAG, "Malformed image URL in news " + id);
                 }
 
                 URL bigImage = null;
                 try {
-                    bigImage = new URL(newsObject.getString("bigImage"));
+                    bigImage = new URL(JSONVerifier.checkStringFromJson(newsObject.getString("bigImage")));
                 } catch (MalformedURLException e) {
                     Log.i(LOG_TAG, "Malformed bigImage URL in news " + id);
                 }
 
                 int userProfileId = newsObject.getInt("userProfileId");
-                String shortDescription = newsObject.getString("shortDescription");
-                String title = newsObject.getString("name");
-                String description = newsObject.getString("description");
+                String shortDescription = JSONVerifier.checkStringFromJson(newsObject.getString("shortDescription"));
+                String title = JSONVerifier.checkStringFromJson(newsObject.getString("name"));
+                String description = JSONVerifier.checkStringFromJson(newsObject.getString("description"));
 
                 News newNews = new News(id, datePublished, lastUpdated, isPublished, contentTypeId,
                         image, bigImage, userProfileId, shortDescription, title, description);

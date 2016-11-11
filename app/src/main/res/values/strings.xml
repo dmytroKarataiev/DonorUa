@@ -65,13 +65,12 @@
     <string name="navigation">Меню</string>
     <string name="btn_recipient_link">Посилання</string>
 
-    <string name="title_activity_hotline">Hotline</string>
 
-    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_hotline">Hotline</string>
     <string name="title_activity_recipient_info">RecipientInfoActivity</string>
     <string name="title_activity_center_map">CenterMapActivity</string>
-    <string name="title_activity_center_info">CenterInfoActivity</string>
+    <string name="title_activity_center_info">Blood center</string>
     <string name="title_activity_news_list">NewsListActivity</string>
     <string name="title_activity_news_info">NewsInfoActivity</string>
-
+    <string name="center_gender">Plateletes can be donated only by males</string>
 </resources>

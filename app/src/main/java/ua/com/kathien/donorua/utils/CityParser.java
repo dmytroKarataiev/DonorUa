@@ -10,9 +10,6 @@ import java.util.ArrayList;
 
 import ua.com.kathien.donorua.models.City;
 
-/**
- * Created by kathien on 8/11/16.
- */
 public class CityParser {
 
     private static final String REQUEST = "cities";
@@ -23,6 +20,8 @@ public class CityParser {
         DonorJSONReader cityReader = new DonorJSONReader();
         String citiesJSON = cityReader.readJSONfromURL(REQUEST);
 
+        //TODO: Ask Paul -- should I ude json verifier here?
+        //FIXME: refactor null check
         if(citiesJSON == null || citiesJSON == "") {
             Log.e("CityParser", "citiesJSON is null");
             return null;
@@ -36,9 +35,9 @@ public class CityParser {
                 JSONObject city = citiesArray.getJSONObject(i);
 
                 int id = city.getInt("id");
-                String nameUa = city.getString("name");
-                String nameRu = city.getString("nameRu");
-                String nameEn = city.getString("nameEn");
+                String nameUa = JSONVerifier.checkStringFromJson(city.getString("name"));
+                String nameRu = JSONVerifier.checkStringFromJson(city.getString("nameRu"));
+                String nameEn = JSONVerifier.checkStringFromJson(city.getString("nameEn"));
                 int regionId = city.getInt("regionId");
 
                 City currentCity = new City(id, nameUa, nameEn, nameRu, regionId);

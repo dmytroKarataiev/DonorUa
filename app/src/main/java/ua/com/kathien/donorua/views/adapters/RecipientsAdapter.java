@@ -60,7 +60,7 @@ public class RecipientsAdapter extends RecyclerView.Adapter<RecipientsAdapter.Vi
 
         Recipient recipient = recipientsList.get(position);
 
-        //TODO: add full name to recipients
+        //FIXME: add full name to recipients
         holder.recipientNameTextView.setText(recipient.getFullName());
         holder.donorCountTextView.setText(String.valueOf(recipient.getNeededDonorsCount()));
         holder.cityNameTextView.setText(recipient.getCity());

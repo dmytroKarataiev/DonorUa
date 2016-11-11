@@ -38,9 +38,6 @@
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-            <!--<include
-                android:id="@+id/toolbar"
-                layout="@layout/toolbar" />-->
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
@@ -52,11 +49,4 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         >
     </FrameLayout>
-    <!--<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/fragment_center_info"
-        android:name="ua.com.kathien.donorua.fragments.CenterInfoFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout="@layout/fragment_center_info" />-->
 </android.support.design.widget.CoordinatorLayout>
