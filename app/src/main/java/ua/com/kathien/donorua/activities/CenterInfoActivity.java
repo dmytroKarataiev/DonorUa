@@ -18,8 +18,6 @@ import java.net.URL;
 
 import ua.com.kathien.donorua.R;
 import ua.com.kathien.donorua.fragments.CenterInfoFragment;
-import ua.com.kathien.donorua.fragments.CenterListFragment;
-import ua.com.kathien.donorua.models.Center;
 
 public class CenterInfoActivity extends AppCompatActivity {
 
@@ -51,7 +49,7 @@ public class CenterInfoActivity extends AppCompatActivity {
         toolbar.setTitle(center.getName());*/
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.your_placeholder, new CenterInfoFragment());
+        ft.replace(R.id.center_info_placeholder, new CenterInfoFragment());
         ft.commit();
     }
 
@@ -90,6 +88,7 @@ public class CenterInfoActivity extends AppCompatActivity {
 
         protected Bitmap doInBackground(String... args) {
             try {
+                //FIXME: change URL for download
                 bitmap = BitmapFactory.decodeStream((InputStream) new URL("https://pp.vk.me/c626319/v626319162/2b47f/VMhy5BwvwtA.jpg").getContent());
 
             } catch (Exception e) {

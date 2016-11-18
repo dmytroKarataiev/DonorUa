@@ -34,13 +34,17 @@
     <style name="IconStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_gravity">top</item>
         <item name="android:layout_marginRight">8dp</item>
         <item name="android:tint">@color/colorAccent</item>
     </style>
 
     <style name="InfoPageText">
-
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/info_unknown</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
 </resources>
