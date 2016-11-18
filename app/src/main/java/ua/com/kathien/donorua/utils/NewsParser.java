@@ -43,7 +43,9 @@ public class NewsParser {
 
                 Date datePublished = null;
                 try {
-                    datePublished = DataUtils.stringToDate(JSONVerifier.checkStringFromJson(newsObject.getString("datePublished")));
+                    String datePublishedString = JSONVerifier.checkStringFromJson(newsObject.getString("datePublished"));
+                    if (datePublishedString != null)
+                        datePublished = DataUtils.stringToDate(datePublishedString);
                 } catch (ParseException e) {
                     Log.i(LOG_TAG, "Parse exception in datePublished in news " + id);
                 }
@@ -52,9 +54,9 @@ public class NewsParser {
                 Date lastUpdated = null;
                 try {
                     String lastUpdatedDateString = JSONVerifier.checkStringFromJson(newsObject.getString("lastUpdatedDate"));
-                    if(lastUpdatedDateString != null) {
+                    if(lastUpdatedDateString != null)
                         lastUpdated = DataUtils.stringToDate(lastUpdatedDateString);
-                    }
+
                 } catch (ParseException e) {
                     Log.i(LOG_TAG, "Parse exception in lastUpdated in news " + id);
                 }
@@ -76,6 +78,7 @@ public class NewsParser {
                     Log.i(LOG_TAG, "Malformed bigImage URL in news " + id);
                 }
 
+                //FIXME: object from json can't be cast to int
                 int userProfileId = newsObject.getInt("userProfileId");
                 String shortDescription = JSONVerifier.checkStringFromJson(newsObject.getString("shortDescription"));
                 String title = JSONVerifier.checkStringFromJson(newsObject.getString("name"));
