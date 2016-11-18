@@ -34,10 +34,11 @@ public class DataUtils {
         return sdf.format(date);
     }
 
+
+
     public static Date stringToDate(String string) throws ParseException {
         Locale currentLocale = Locale.getDefault();
         SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, currentLocale);
-
         return sdf.parse(string);
     }
 

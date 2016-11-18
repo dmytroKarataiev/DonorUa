@@ -29,6 +29,7 @@
 
 
         <include
+            android:id="@+id/center_name_divider"
             layout="@layout/item_divider" />
 
         <LinearLayout
@@ -37,11 +38,11 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <ImageView
-                android:id="@+id/ic_address"
+                android:id="@+id/center_info_ic_address"
                 android:src="@drawable/ic_vector_map_marker"
                 style="@style/IconStyle"/>
             <TextView
-                android:id="@+id/text_address"
+                android:id="@+id/center_info_text_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/info_unknown"
@@ -49,7 +50,9 @@
                 android:textSize="16sp"/>
         </LinearLayout>
 
-        <include layout="@layout/item_divider" />
+        <include
+            android:id="@+id/center_address_divider"
+            layout="@layout/item_divider" />
 
         <LinearLayout
             android:id="@+id/center_ll_phone"
@@ -57,11 +60,11 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <ImageView
-                android:id="@+id/ic_phone"
+                android:id="@+id/center_info_ic_phone"
                 android:src="@drawable/ic_vector_phone"
                 style="@style/IconStyle"/>
             <TextView
-                android:id="@+id/text_phone_number"
+                android:id="@+id/center_info_text_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/info_unknown"
@@ -69,19 +72,21 @@
                 android:textSize="16sp"/>
         </LinearLayout>
 
-        <include layout="@layout/item_divider"/>
+        <include
+            android:id="@+id/center_phone_divider"
+            layout="@layout/item_divider"/>
 
         <LinearLayout
-            android:id="@+id/center_ll_information"
+            android:id="@+id/center_ll_about"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <ImageView
-                android:id="@+id/ic_info"
+                android:id="@+id/center_info_ic_about"
                 app:srcCompat="@drawable/ic_vector_information"
                 style="@style/IconStyle"/>
             <TextView
-                android:id="@+id/text_info"
+                android:id="@+id/center_info_text_about"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/info_unknown"
@@ -89,7 +94,9 @@
                 android:textSize="16sp"/>
         </LinearLayout>
 
-        <include layout="@layout/item_divider"/>
+        <include
+            android:id="@+id/center_about_divider"
+            layout="@layout/item_divider"/>
 
         <LinearLayout
             android:id="@+id/center_ll_description"
@@ -97,11 +104,11 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <ImageView
-                android:id="@+id/ic_descripiton"
+                android:id="@+id/center_info_ic_descripiton"
                 android:src="@drawable/ic_vector_clipboard_text"
                 style="@style/IconStyle"/>
             <TextView
-                android:id="@+id/text_description"
+                android:id="@+id/center_info_text_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/info_unknown"
@@ -109,7 +116,9 @@
                 android:textSize="16sp"/>
         </LinearLayout>
 
-        <include layout="@layout/item_divider"/>
+        <include
+            android:id="@+id/center_description_divider"
+            layout="@layout/item_divider"/>
 
         <LinearLayout
             android:id="@+id/center_ll_email"
@@ -117,11 +126,11 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <ImageView
-                android:id="@+id/ic_email"
+                android:id="@+id/center_info_ic_email"
                 android:src="@drawable/ic_vector_email"
                 style="@style/IconStyle"/>
             <TextView
-                android:id="@+id/text_email"
+                android:id="@+id/center_info_text_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/info_unknown"
@@ -139,11 +148,11 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <ImageView
-                android:id="@+id/ic_website"
+                android:id="@+id/center_info_ic_website"
                 app:srcCompat="@drawable/ic_vector_web"
                 style="@style/IconStyle"/>
             <TextView
-                android:id="@+id/text_website"
+                android:id="@+id/center_info_text_website"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/info_unknown"
@@ -151,29 +160,27 @@
                 android:textSize="16sp"/>
         </LinearLayout>
 
-        <include layout="@layout/item_divider"/>
+        <include
+            android:id="@+id/center_website_divider"
+            layout="@layout/item_divider"/>
 
         <LinearLayout
             android:id="@+id/center_ll_gender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
             <ImageView
-                android:id="@+id/ic_gender"
+                android:id="@+id/center_info_ic_gender"
                 app:srcCompat="@drawable/ic_vector_gender_male"
                 style="@style/IconStyle"/>
             <TextView
-                android:id="@+id/text_gender"
+                android:id="@+id/cener_info_text_gender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/center_gender"
                 android:textColor="@color/textColorPrimary"
                 android:textSize="16sp"/>
         </LinearLayout>
-
     </LinearLayout>
-
-
-
-
 </android.support.v4.widget.NestedScrollView>

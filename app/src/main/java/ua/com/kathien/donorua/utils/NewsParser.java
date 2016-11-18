@@ -48,9 +48,13 @@ public class NewsParser {
                     Log.i(LOG_TAG, "Parse exception in datePublished in news " + id);
                 }
 
+                //FIXME: app crashes if date is null
                 Date lastUpdated = null;
                 try {
-                    lastUpdated = DataUtils.stringToDate(JSONVerifier.checkStringFromJson(newsObject.getString("lastUpdatedDate")));
+                    String lastUpdatedDateString = JSONVerifier.checkStringFromJson(newsObject.getString("lastUpdatedDate"));
+                    if(lastUpdatedDateString != null) {
+                        lastUpdated = DataUtils.stringToDate(lastUpdatedDateString);
+                    }
                 } catch (ParseException e) {
                     Log.i(LOG_TAG, "Parse exception in lastUpdated in news " + id);
                 }

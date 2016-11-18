@@ -2,16 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp"
-    android:focusable="false">
+    android:layout_marginBottom="8dp">
 
     <ImageView
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:id="@+id/recipient_icon"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/recipient_icon"
         android:focusable="false" />
 
@@ -22,7 +24,7 @@
         android:text="New Text"
         android:id="@+id/recipient_name"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/recipient_icon"
+        android:layout_toRightOf="@id/recipient_icon"
         android:layout_toLeftOf="@+id/donor_count"
         android:layout_toStartOf="@+id/donor_count"
         android:focusable="false" />
@@ -52,10 +54,10 @@
         android:layout_marginRight="8dp"
         android:text="New Text"
         android:id="@+id/blood_type"
-        android:layout_below="@+id/recipient_name"
-        android:layout_toRightOf="@+id/recipient_icon"
-        android:layout_toLeftOf="@+id/donor_count"
-        android:layout_toStartOf="@+id/donor_count"
+        android:layout_below="@id/recipient_name"
+        android:layout_toRightOf="@id/recipient_icon"
+        android:layout_toLeftOf="@id/donor_count"
+        android:layout_toStartOf="@id/donor_count"
         android:focusable="false" />
 
     <TextView
@@ -64,9 +66,9 @@
         android:layout_marginRight="8dp"
         android:text="New Text"
         android:id="@+id/city_name"
-        android:layout_below="@+id/blood_type"
-        android:layout_toRightOf="@+id/recipient_icon"
-        android:layout_toLeftOf="@+id/donor_count"
-        android:layout_toStartOf="@+id/donor_count"
+        android:layout_below="@id/blood_type"
+        android:layout_toRightOf="@id/recipient_icon"
+        android:layout_toLeftOf="@id/donor_count"
+        android:layout_toStartOf="@id/donor_count"
         android:focusable="false" />
 </RelativeLayout>
