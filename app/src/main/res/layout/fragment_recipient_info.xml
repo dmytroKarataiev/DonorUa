@@ -134,20 +134,20 @@
         layout="@layout/item_divider" />
 
     <LinearLayout
-        android:id="@+id/ll_recipient_info"
+        android:id="@+id/ll_recipient_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <ImageView
-            android:id="@+id/ic_recipient_info"
-            android:src="@drawable/ic_vector_information"
+            android:id="@+id/ic_recipient_description"
+            android:src="@drawable/ic_vector_ghost"
             style="@style/IconStyle"/>
         <TextView
-            android:id="@+id/text_recipient_info"
+            android:id="@+id/text_recipient_description"
             style="@style/InfoPageText"/>
     </LinearLayout>
     <include
-        android:id="@+id/recipient_info_divider"
+        android:id="@+id/recipient_description_divider"
         layout="@layout/item_divider" />
 
     <LinearLayout
@@ -164,7 +164,7 @@
             style="@style/InfoPageText"/>
     </LinearLayout>
     <include
-        android:id="@+id/recipient_birth_date_divider"
+        android:id="@+id/recipient_date_added_divider"
         layout="@layout/item_divider" />
 
 </LinearLayout>
